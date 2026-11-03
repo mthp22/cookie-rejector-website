@@ -1,0 +1,134 @@
+<section id="get-extension" class="cta">
+  <div class="container">
+    <div class="cta-card">
+      <div class="cta-bg"></div>
+      <div class="cta-content">
+        <h2 class="cta-title">Take control of your cookie choices.</h2>
+        <p class="cta-description">Make everyday browsing a little less frustrating with Cookie Rejector.</p>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/cookie-rejector/cpibjkeeodccagflacomdgeajdeihaoc" class="cta-button">Get Cookie Rejector</a>
+        <p class="cta-note">Free browser extension. No account required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 5rem 0;
+    background: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .cta { padding: 7rem 0; }
+  }
+
+  .cta-card {
+    position: relative;
+    background: var(--color-text-primary);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .cta-card { padding: 3rem; }
+  }
+
+  @media (min-width: 768px) {
+    .cta-card { padding: 4rem; }
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+  }
+
+  .cta-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 24rem;
+    height: 24rem;
+    background: var(--color-accent);
+    border-radius: 50%;
+    filter: blur(80px);
+    transform: translate(50%, -50%);
+  }
+
+  .cta-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 16rem;
+    height: 16rem;
+    background: var(--color-accent);
+    border-radius: 50%;
+    filter: blur(80px);
+    transform: translate(-50%, 50%);
+  }
+
+  .cta-content {
+    position: relative;
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background: rgba(163, 230, 53, 0.2);
+    margin-bottom: 1.5rem;
+    color: var(--color-accent);
+  }
+
+  .cta-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .cta-title { font-size: 2.25rem; }
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background: var(--color-accent);
+    color: var(--color-accent-dark);
+    border-radius: 9999px;
+    transition: all 0.2s;
+  }
+
+  .cta-button:hover {
+    background: rgba(163, 230, 53, 0.9);
+    box-shadow: 0 8px 24px rgba(163, 230, 53, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+</style>

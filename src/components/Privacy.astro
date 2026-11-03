@@ -1,0 +1,172 @@
+---
+const principles = [
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+    title: 'Your choice matters.',
+    description: 'Cookie Rejector is built on the belief that you should have easy control over which cookies are set on your device.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    title: 'Reject optional cookies where possible.',
+    description: 'The extension attempts to select reject or decline options on cookie consent banners it can detect.',
+  },
+  {
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    title: 'Transparency over exaggerated promises.',
+    description: 'We believe in honest communication about what the extension can and cannot do.',
+  },
+];
+---
+
+<section id="privacy" class="privacy">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Privacy deserves a better default.</h2>
+      <p class="section-subtitle">Cookie Rejector is designed with privacy principles at its core.</p>
+    </div>
+
+    <div class="principles-grid">
+      {principles.map((principle) => (
+        <div class="principle-card">
+          <div class="principle-icon" set:html={principle.icon}></div>
+          <h3 class="principle-title">{principle.title}</h3>
+          <p class="principle-description">{principle.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="disclaimer">
+      <div class="disclaimer-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <div class="disclaimer-content">
+        <h4 class="disclaimer-heading">Important to know</h4>
+        <p class="disclaimer-text">
+          Cookie consent interfaces vary between websites. Automatic detection and rejection may not work on every site. Cookie Rejector does not guarantee that all tracking is prevented.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .privacy {
+    padding: 5rem 0;
+    background: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .privacy { padding: 7rem 0; }
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto 4rem;
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-title { font-size: 2.25rem; }
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .principles-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .principle-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    transition: box-shadow 0.3s;
+  }
+
+  .principle-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .principle-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: rgba(163, 230, 53, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--color-accent-dark);
+  }
+
+  .principle-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .principle-description {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .disclaimer {
+    max-width: 48rem;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .disclaimer-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: #fefce8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ca8a04;
+  }
+
+  .disclaimer-heading {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .disclaimer-text {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+</style>

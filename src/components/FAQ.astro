@@ -1,0 +1,164 @@
+---
+const faqs = [
+  {
+    question: 'What is Cookie Rejector?',
+    answer: 'Cookie Rejector is a privacy-focused browser extension that automatically detects cookie consent banners and attempts to reject optional cookies on your behalf. It helps reduce the friction of manually interacting with cookie popups while giving you greater control over your privacy.',
+  },
+  {
+    question: 'How does Cookie Rejector work?',
+    answer: 'When you visit a website, Cookie Rejector monitors for common cookie consent banner patterns. When a supported banner is detected, the extension attempts to interact with it by selecting reject or decline options, prioritising the rejection of optional cookies over accepting them.',
+  },
+  {
+    question: 'Does it block all cookies?',
+    answer: 'No. Cookie Rejector does not block cookies. It interacts with cookie consent banners to attempt to reject optional cookies. Essential cookies that websites require to function are not affected. The extension works with the consent mechanisms that websites provide.',
+  },
+  {
+    question: 'Does it prevent all online tracking?',
+    answer: 'No. Cookie Rejector does not guarantee that all tracking is prevented. It only interacts with cookie consent interfaces it can detect. Many forms of tracking exist beyond cookie consent banners, and the extension does not address those.',
+  },
+  {
+    question: 'Will it work on every website?',
+    answer: 'No. Cookie consent interfaces vary significantly between websites. Cookie Rejector supports common consent banner patterns, but it may not work on every site. New banner designs and implementations may not be recognised by the extension.',
+  },
+  {
+    question: 'Can I customize its behaviour?',
+    answer: 'Yes. Cookie Rejector includes an options page where you can configure the extension\'s behaviour according to your preferences.',
+  },
+  {
+    question: 'Does it require a separate application?',
+    answer: 'No. Cookie Rejector is a lightweight browser extension that runs directly in your browser. There is no separate application or background service required.',
+  },
+];
+---
+
+<section id="faq" class="faq">
+  <div class="container faq-container">
+    <div class="section-header">
+      <h2 class="section-title">Frequently asked questions</h2>
+      <p class="section-subtitle">Everything you need to know about Cookie Rejector.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <details class="faq-item">
+          <summary class="faq-question">
+            <span>{faq.question}</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: 5rem 0;
+    background: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .faq { padding: 7rem 0; }
+  }
+
+  .faq-container {
+    max-width: 48rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .section-title { font-size: 2.25rem; }
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .faq-list {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .faq-list { padding: 2rem; }
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    gap: 1rem;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover span {
+    color: var(--color-text-primary);
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    transition: transform 0.3s;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    padding-bottom: 1.25rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .faq-answer p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    padding-right: 2rem;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
