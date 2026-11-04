@@ -1,11 +1,14 @@
 ---
+import { HOME_URL, asset } from '../config';
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = new URL(HOME_URL, Astro.site);
+const imageUrl = new URL(asset('logo.png'), Astro.site);
 ---
 
 <!doctype html>
@@ -24,14 +27,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Cookie Rejector" />
+    <meta property="og:image" content={imageUrl} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href={`/logo.png`} />
+    <link rel="icon" type="image/png" href={asset('favicon.png')} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,33 +119,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         .container { padding: 0 2rem; }
       }
 
-      /* Animations */
-      @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes slideUp {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-
-      @keyframes pulseGreen {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-      }
-
-      .animate-fade-in-up {
-        animation: fadeInUp 0.6s ease-out forwards;
-      }
-
-      .animate-slide-up {
-        animation: slideUp 0.4s ease-out forwards;
-      }
-
-      .animate-pulse-green {
-        animation: pulseGreen 2s ease-in-out infinite;
-      }
     </style>
   </head>
   <body>
