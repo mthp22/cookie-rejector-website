@@ -1,43 +1,36 @@
-# Astro Starter Kit: Minimal
+# Cookie Rejector Website
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page for [Cookie Rejector](https://microsoftedge.microsoft.com/addons/detail/cookie-rejector/cpibjkeeodccagflacomdgeajdeihaoc),
+a free Microsoft Edge extension that detects cookie consent banners and attempts to reject
+optional cookies.
+
+## Development
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static output in dist/
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/   # Page sections (Hero, Features, FAQ, …)
+├── config.ts     # Store URL and other shared constants
+├── layouts/      # Base layout with head, SEO and global styles
+└── pages/        # index.astro — the single page
+public/           # logo, robots.txt, sitemap.xml
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The site is a single static page built with [Astro](https://astro.build). The `base`
+path in `astro.config.mjs` matches the GitHub Pages project URL
+(`https://mthp22.github.io/cookie-rejector-website/`); deployment runs through the
+workflow in `.github/workflows/deploy.yml`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Claims
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site deliberately does not claim that the extension blocks all cookies, prevents
+all online tracking, or works on every website. Consent interfaces vary between sites,
+so automatic detection and rejection may not work everywhere.
