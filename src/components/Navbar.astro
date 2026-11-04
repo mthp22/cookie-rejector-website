@@ -1,8 +1,12 @@
+---
+import { STORE_URL, HOME_URL, asset } from '../config';
+---
+
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="container navbar-inner">
-    <a href="/" class="navbar-brand" aria-label="Cookie Rejector Home">
+    <a href={HOME_URL} class="navbar-brand" aria-label="Cookie Rejector Home">
       <div class="brand-icon">
-        <img src="/logo.png" alt="Cookie Rejector Logo" width="20" height="20" />
+        <img src={asset('logo.png')} alt="Cookie Rejector Logo" width="20" height="20" />
       </div>
       <span class="brand-name">Cookie Rejector</span>
     </a>
@@ -12,7 +16,7 @@
       <a href="#how-it-works" class="nav-link">How it works</a>
       <a href="#privacy" class="nav-link">Privacy</a>
       <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#get-extension" class="nav-cta">Get Extension</a>
+      <a href={STORE_URL} class="nav-cta" rel="noopener">Add to Edge</a>
     </div>
 
     <button class="navbar-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
@@ -30,150 +34,171 @@
     <a href="#how-it-works" class="nav-link-mobile">How it works</a>
     <a href="#privacy" class="nav-link-mobile">Privacy</a>
     <a href="#faq" class="nav-link-mobile">FAQ</a>
-    <a href="#get-extension" class="nav-cta-mobile">Get Extension</a>
+    <a href={STORE_URL} class="nav-cta-mobile" rel="noopener">Add to Edge</a>
   </div>
 </nav>
 
 <style>
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-border);
-    transition: all 0.3s;
-  }
+  .navbar a {
+  text-decoration: none;
+}
 
+.navbar a:hover {
+  text-decoration: none;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-inner {
+  width: min(100% - 2.5rem, 1050px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.brand-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--color-accent);
+  border-radius: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.brand-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.navbar-brand:hover .brand-icon {
+  transform: scale(1.05);
+}
+
+.brand-name {
+  font-weight: 650;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  letter-spacing: -0.025em;
+}
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-links { display: flex; }
+  .navbar-toggle { display: none !important; }
+}
+
+.nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background: var(--color-text-primary);
+  color: white;
+  border-radius: 9999px;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover {
+  background: rgba(23, 26, 23, 0.9);
+  box-shadow: 0 4px 12px rgba(23, 26, 23, 0.12);
+}
+
+.navbar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.navbar-toggle:hover {
+  background: var(--color-secondary);
+}
+
+.navbar-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 0.85rem 1.25rem 1rem;
+  border-top: 1px solid var(--color-border);
+  background: white;
+  gap: 0.15rem;
+}
+
+.navbar-mobile.active {
+  display: flex;
+}
+
+.nav-link-mobile {
+  display: block;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.nav-link-mobile:hover {
+  color: var(--color-text-primary);
+  background: var(--color-secondary);
+}
+
+.nav-cta-mobile {
+  display: block;
+  margin: 0.4rem 0.85rem 0;
+  padding: 0.65rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--color-text-primary);
+  color: white;
+  border-radius: 9999px;
+}
+
+@media (max-width: 480px) {
   .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 4rem;
+    width: calc(100% - 2rem);
   }
+}
 
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .brand-icon {
-    width: 2rem;
-    height: 2rem;
-    background: var(--color-accent);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-  }
-
-  .navbar-brand:hover .brand-icon {
-    transform: scale(1.05);
-  }
-
-  .brand-name {
-    font-weight: 600;
-    font-size: 1.125rem;
-    color: var(--color-text-primary);
-  }
-
-  .navbar-links {
-    display: none;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .navbar-links { display: flex; }
-    .navbar-toggle { display: none !important; }
-  }
-
-  .nav-link {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    transition: color 0.2s;
-  }
-
-  .nav-link:hover {
-    color: var(--color-text-primary);
-  }
-
-  .nav-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    background: var(--color-text-primary);
-    color: white;
-    border-radius: 9999px;
-    transition: all 0.2s;
-  }
-
-  .nav-cta:hover {
-    background: rgba(23, 26, 23, 0.9);
-    box-shadow: 0 4px 12px rgba(23, 26, 23, 0.15);
-  }
-
-  .navbar-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 0.5rem;
-    color: var(--color-text-primary);
-  }
-
-  .navbar-toggle:hover {
-    background: var(--color-secondary);
-  }
-
-  .navbar-mobile {
-    display: none;
-    flex-direction: column;
-    padding: 1rem;
-    border-top: 1px solid var(--color-border);
-    background: white;
-    gap: 0.25rem;
-  }
-
-  .navbar-mobile.active {
-    display: flex;
-  }
-
-  .nav-link-mobile {
-    display: block;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-  }
-
-  .nav-link-mobile:hover {
-    color: var(--color-text-primary);
-    background: var(--color-secondary);
-  }
-
-  .nav-cta-mobile {
-    display: block;
-    margin: 0.5rem 1rem 0;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-align: center;
-    background: var(--color-text-primary);
-    color: white;
-    border-radius: 9999px;
-    transition: all 0.2s;
-  }
 </style>
 
 <script>

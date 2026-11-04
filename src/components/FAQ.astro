@@ -1,10 +1,6 @@
 ---
 const faqs = [
   {
-    question: 'What is Cookie Rejector?',
-    answer: 'Cookie Rejector is a privacy-focused browser extension that automatically detects cookie consent banners and attempts to reject optional cookies on your behalf. It helps reduce the friction of manually interacting with cookie popups while giving you greater control over your privacy.',
-  },
-  {
     question: 'How does Cookie Rejector work?',
     answer: 'When you visit a website, Cookie Rejector monitors for common cookie consent banner patterns. When a supported banner is detected, the extension attempts to interact with it by selecting reject or decline options, prioritising the rejection of optional cookies over accepting them.',
   },
@@ -13,16 +9,12 @@ const faqs = [
     answer: 'No. Cookie Rejector does not block cookies. It interacts with cookie consent banners to attempt to reject optional cookies. Essential cookies that websites require to function are not affected. The extension works with the consent mechanisms that websites provide.',
   },
   {
-    question: 'Does it prevent all online tracking?',
-    answer: 'No. Cookie Rejector does not guarantee that all tracking is prevented. It only interacts with cookie consent interfaces it can detect. Many forms of tracking exist beyond cookie consent banners, and the extension does not address those.',
-  },
-  {
     question: 'Will it work on every website?',
     answer: 'No. Cookie consent interfaces vary significantly between websites. Cookie Rejector supports common consent banner patterns, but it may not work on every site. New banner designs and implementations may not be recognised by the extension.',
   },
   {
-    question: 'Can I customize its behaviour?',
-    answer: 'Yes. Cookie Rejector includes an options page where you can configure the extension\'s behaviour according to your preferences.',
+    question: 'Can I customise its behaviour?',
+    answer: 'Yes. Cookie Rejector includes an options page where you can configure the extension’s behaviour according to your preferences.',
   },
   {
     question: 'Does it require a separate application?',
@@ -32,26 +24,36 @@ const faqs = [
 ---
 
 <section id="faq" class="faq">
-  <div class="container faq-container">
+  <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Frequently asked questions</h2>
-      <p class="section-subtitle">Everything you need to know about Cookie Rejector.</p>
+      <h2 class="section-title">Frequently Asked Questions</h2>
     </div>
 
-    <div class="faq-list">
-      {faqs.map((faq) => (
-        <details class="faq-item">
-          <summary class="faq-question">
-            <span>{faq.question}</span>
-            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </summary>
-          <div class="faq-answer">
-            <p>{faq.answer}</p>
-          </div>
-        </details>
-      ))}
+    <div class="faq-grid">
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{faq.question}</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <aside class="faq-aside">
+        <span class="aside-badge">New Feature Coming Soon</span>
+        <h3 class="aside-title">Support Portal</h3>
+        <p class="aside-text">
+          A support portal is on the way: one place to report a site where the extension
+          did not work, ask for help, and follow releases.
+        </p>
+      </aside>
     </div>
   </div>
 </section>
@@ -59,26 +61,25 @@ const faqs = [
 <style>
   .faq {
     padding: 5rem 0;
-    background: var(--color-primary);
+    border-top: 1px solid var(--color-border);
+    width: min(100% - 2.5rem, 1050px);
+    margin-inline: auto;
   }
 
   @media (min-width: 768px) {
     .faq { padding: 7rem 0; }
   }
 
-  .faq-container {
-    max-width: 48rem;
-  }
-
   .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    max-width: 40rem;
+    margin: 0 auto 3rem;
   }
 
   .section-title {
     font-size: 1.875rem;
     font-weight: 700;
-    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
     margin-bottom: 1rem;
   }
 
@@ -86,20 +87,36 @@ const faqs = [
     .section-title { font-size: 2.25rem; }
   }
 
-  .section-subtitle {
-    font-size: 1.125rem;
-    color: var(--color-text-secondary);
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
   }
 
-  .faq-list {
+  @media (min-width: 1024px) {
+    .faq-grid {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+      gap: 2rem;
+    }
+  }
+
+  .faq-list,
+  .faq-aside {
     background: white;
-    border-radius: 1rem;
     border: 1px solid var(--color-border);
+    border-radius: 1rem;
     padding: 1.5rem;
   }
 
   @media (min-width: 640px) {
-    .faq-list { padding: 2rem; }
+    .faq-list,
+    .faq-aside {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
   }
 
   .faq-item {
@@ -114,10 +131,10 @@ const faqs = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 0;
+    gap: 1rem;
+    padding: 1.15rem 0;
     cursor: pointer;
     list-style: none;
-    gap: 1rem;
   }
 
   .faq-question::-webkit-details-marker {
@@ -127,12 +144,6 @@ const faqs = [
   .faq-question span {
     font-size: 1rem;
     font-weight: 500;
-    color: var(--color-text-primary);
-    transition: color 0.2s;
-  }
-
-  .faq-question:hover span {
-    color: var(--color-text-primary);
   }
 
   .faq-chevron {
@@ -146,8 +157,7 @@ const faqs = [
   }
 
   .faq-answer {
-    padding-bottom: 1.25rem;
-    animation: fadeIn 0.3s ease-out;
+    padding-bottom: 1.15rem;
   }
 
   .faq-answer p {
@@ -157,8 +167,124 @@ const faqs = [
     padding-right: 2rem;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
+  .faq-aside {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  color: white;
+  padding: 2rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-aside:hover {
+  border-color: #b6f23b;
+  transform: translateY(-4px);
+}
+
+.faq-aside::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -90px;
+  right: -70px;
+  border: 1px solid rgba(182, 242, 59, 0.16);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 20px rgba(182, 242, 59, 0.025),
+    0 0 0 40px rgba(182, 242, 59, 0.025);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.aside-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #163d2a;
+  background: #b6f23b;
+  border-radius: 9999px;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #163d2a;
+  border-radius: 50%;
+  animation: badgePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.7);
+  }
+}
+
+.aside-title {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+  margin-bottom: 0.85rem;
+}
+
+.title-accent {
+  color: #b6f23b;
+}
+
+.aside-text {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 1.4rem;
+}
+
+.aside-divider {
+  width: 42px;
+  height: 3px;
+  border-radius: 99px;
+  background: #b6f23b;
+  margin-bottom: 1.2rem;
+}
+
+.aside-decoration {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  color: rgba(182, 242, 59, 0.2);
+  font-size: 2rem;
+  font-weight: 700;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-aside:hover .aside-decoration {
+  color: #b6f23b;
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 600px) {
+  .faq-aside {
+    padding: 1.5rem;
+  }
+}
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+</script>

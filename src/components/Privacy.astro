@@ -1,172 +1,252 @@
 ---
-const principles = [
-  {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
-    title: 'Your choice matters.',
-    description: 'Cookie Rejector is built on the belief that you should have easy control over which cookies are set on your device.',
-  },
-  {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
-    title: 'Reject optional cookies where possible.',
-    description: 'The extension attempts to select reject or decline options on cookie consent banners it can detect.',
-  },
-  {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-    title: 'Transparency over exaggerated promises.',
-    description: 'We believe in honest communication about what the extension can and cannot do.',
-  },
-];
 ---
 
 <section id="privacy" class="privacy">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Privacy deserves a better default.</h2>
-      <p class="section-subtitle">Cookie Rejector is designed with privacy principles at its core.</p>
-    </div>
-
-    <div class="principles-grid">
-      {principles.map((principle) => (
-        <div class="principle-card">
-          <div class="principle-icon" set:html={principle.icon}></div>
-          <h3 class="principle-title">{principle.title}</h3>
-          <p class="principle-description">{principle.description}</p>
-        </div>
-      ))}
-    </div>
-
-    <div class="disclaimer">
-      <div class="disclaimer-icon">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-          <line x1="12" y1="9" x2="12" y2="13"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
-        </svg>
-      </div>
+  <div class="container privacy-inner">
+    <div class="disclaimer" data-privacy-card>
       <div class="disclaimer-content">
-        <h4 class="disclaimer-heading">Important to know</h4>
-        <p class="disclaimer-text">
-          Cookie consent interfaces vary between websites. Automatic detection and rejection may not work on every site. Cookie Rejector does not guarantee that all tracking is prevented.
+        <h3 class="disclaimer-heading" data-privacy-heading> Important to know</h3>
+
+        <p class="disclaimer-intro" data-privacy-intro>
+          Your browsing experience matters, but it's important to understand
+          what automatic cookie rejection can and cannot do.
         </p>
+
+        <ul class="disclaimer-list">
+          <li class="disclaimer-item">
+            <span class="bullet">→</span>
+            <span>Cookie consent interfaces vary between websites.</span>
+          </li>
+
+          <li class="disclaimer-item">
+            <span class="bullet">→</span>
+            <span>Automatic detection and rejection may not work on every site.</span>
+          </li>
+
+          <li class="disclaimer-item">
+            <span class="bullet">→</span>
+            <span>Cookie Rejector does not guarantee that all tracking is prevented.</span>
+          </li>
+        </ul>
+        
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const card = document.querySelector("[data-privacy-card]");
+  const heading = document.querySelector("[data-privacy-heading]");
+  const intro = document.querySelector("[data-privacy-intro]");
+  const items = document.querySelectorAll(".disclaimer-item");
+
+  if (card && heading) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%",
+        once: true,
+      },
+    });
+
+    tl.fromTo(card,
+      {
+        opacity: 0,
+        y: 90,
+        scale: 0.88,
+        rotateX: -15,
+        filter: "blur(12px)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotateX: 0,
+        filter: "blur(0px)",
+        duration: 1.2,
+        ease: "elastic.out(1, 0.7)",
+      }
+    );
+
+    tl.fromTo(heading,
+      {
+        opacity: 0,
+        y: 35,
+        scale: 0.9,
+        filter: "blur(8px)",
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 0.85,
+        ease: "back.out(1.7)",
+      },
+      "-=0.3"
+    );
+
+    tl.fromTo(intro,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      },
+      "-=0.4"
+    );
+
+    tl.fromTo(items,
+      {
+        opacity: 0,
+        x: -30,
+        y: 15,
+      },
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.16,
+        ease: "power3.out",
+      },
+      "-=0.2"
+    );
+  }
+</script>
+
 <style>
   .privacy {
     padding: 5rem 0;
-    background: var(--color-secondary);
+    background: var(--color-primary);
   }
 
   @media (min-width: 768px) {
-    .privacy { padding: 7rem 0; }
+    .privacy {
+      padding: 7rem 0;
+    }
   }
 
-  .section-header {
-    text-align: center;
-    max-width: 36rem;
-    margin: 0 auto 4rem;
-  }
-
-  .section-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .section-title { font-size: 2.25rem; }
-  }
-
-  .section-subtitle {
-    font-size: 1.125rem;
-    color: var(--color-text-secondary);
-  }
-
-  .principles-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .principles-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  .principle-card {
-    background: white;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    border: 1px solid var(--color-border);
-    transition: box-shadow 0.3s;
-  }
-
-  .principle-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  }
-
-  .principle-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.5rem;
-    background: rgba(163, 230, 53, 0.1);
+  .privacy-inner {
+    max-width: 52rem;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
-    color: var(--color-accent-dark);
-  }
-
-  .principle-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .principle-description {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+    margin-inline: auto;
   }
 
   .disclaimer {
-    max-width: 48rem;
-    margin: 0 auto;
-    background: white;
-    border-radius: 1rem;
-    padding: 1.5rem;
+    width: 100%;
+    background: var(--color-secondary);
     border: 1px solid var(--color-border);
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .disclaimer-icon {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 0.5rem;
-    background: #fefce8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #ca8a04;
+  .disclaimer:hover {
+    border-color: rgba(182, 242, 59, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+  }
+
+  .privacy-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #6b9e24;
+    margin-bottom: 0.9rem;
   }
 
   .disclaimer-heading {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-    margin-bottom: 0.25rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
   }
 
-  .disclaimer-text {
-    font-size: 0.875rem;
+  .disclaimer-intro {
+    max-width: 40rem;
+    font-size: 0.95rem;
     color: var(--color-text-secondary);
-    line-height: 1.6;
+    line-height: 1.8;
+    margin-bottom: 1.75rem;
+  }
+
+  .disclaimer-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .disclaimer-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+  }
+
+  .bullet {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.65rem;
+    height: 1.65rem;
+    border-radius: 0.45rem;
+    background: #163d2a;
+    color: #b6f23b;
+    font-size: 1rem;
+    font-weight: 800;
+    transition: transform 0.25s ease;
+  }
+
+  .disclaimer-item:hover .bullet {
+    transform: translateX(4px);
+  }
+
+  .footer-line {
+    width: 2rem;
+    height: 2px;
+    background: #a8df38;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .disclaimer {
+      padding: 1.5rem;
+    }
+
+    .disclaimer-heading {
+      font-size: 1.85rem;
+    }
+
+    .disclaimer-item {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .disclaimer,
+    .privacy-eyebrow,
+    .disclaimer-heading,
+    .disclaimer-intro,
+    .disclaimer-item{
+      animation: none;
+      transform: none;
+      filter: none;
+    }
   }
 </style>
